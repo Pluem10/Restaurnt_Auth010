@@ -14,6 +14,7 @@ const Role = sequelize.define("Role", {
 });
 // Role.sync({ force: true }).then(() => {
 //   Role.create({ id: 1, name: "user" });
+//   Role.create({ id: 2, name: "moderator" });
 //   Role.create({ id: 2, name: "admin" });
 // });
 export default Role;
