@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "./db.js";
 
-const Role = sequelize.define("Role", {
+const Role = sequelize.define("role", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -9,7 +9,7 @@ const Role = sequelize.define("Role", {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 });
 // Role.sync({ force: true }).then(() => {

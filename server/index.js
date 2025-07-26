@@ -25,10 +25,10 @@ const initRole = () => {
   Role.create({ id: 2, name: "moderator" });
   Role.create({ id: 3, name: "admin" });
 };
-// db.sequelize.sync({ force: true }).then(() => {
-//   initRole();
-//   console.log("Drop and sync");
-// });
+db.sequelize.sync({ force: true }).then(() => {
+  initRole();
+  console.log("Drop and sync");
+});
 
 app.get("/", (req, res) => {
   res.send("Restaurant Restful API ");
