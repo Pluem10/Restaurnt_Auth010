@@ -17,20 +17,18 @@ export const Add = () => {
     try {
       const response = await fetch("http://localhost:5000/api/v1/restaurant", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(restaurant),
+        headers: {
+          "Content-Type": "application/json"
+        }
       });
-      if (response.ok) {
-        alert("Restaurant added successfully !!");
-        setRestaurants({
+      if (response.status) {
+        alert("Restaurant added successfully");
+        setRestaurant({
           name: "",
           type: "",
           imageUrl: "",
         });
-      } else {
-        alert("Failed to add restaurant.");
       }
     } catch (error) {
       console.log(error);
@@ -39,67 +37,74 @@ export const Add = () => {
 
   return (
     <div className="container mx-auto">
-      <div>
-        <h1 className="title justify-center text-3xl text-center m-5 gap-x-5">
-          Add Restaurant
-        </h1>
-      </div>
-      <div className="mb-5 flex justify-center items-center max-w">
-        <label className="input">
-          Name :
-          <input
-            type="text"
-            name="name"
-            className="grow"
-            placeholder="Add Name"
-            value={restaurant.name}
-            onChange={handleChange}
-          />
-        </label>
-        <label className="input">
-          Details :
-          <input
-            type="text"
-            name="type"
-            className="grow"
-            placeholder="Add details"
-            value={restaurant.type}
-            onChange={handleChange}
-          />
-        </label>
-        <label className="input">
-          Img :
-          <input
-            type="text"
-            name="imageUrl"
-            className="grow"
-            placeholder="Add img"
-            value={restaurant.imageUrl}
-            onChange={handleChange}
-          />
-        </label>
-        {restaurant.imageUrl && (
-          <div className="flex items-center gap-2">
-            <img className="h-32" src={restaurant.imageUrl} alt="Preview" />
-          </div>
-        )}
-      </div>
-      <div>
-        <button className="btn btn-soft btn-success" onClick={handleSubmit}>
-          Add
-        </button>
-        <button
-          className="btn btn-soft btn-error "
-          onClick={() =>
-            setRestaurants({
-              name: "",
-              type: "",
-              imageUrl: "",
-            })
-          }
-        >
-          Cancel
-        </button>
+      <div className="relative flex flex-col justify-center h-screen overflow-hidden">
+        <div className="w-full p-6 m-auto bg-white rounded-md shadow-md ring-2 ring-gray-800/50 lg:max-w-lg">
+          <h1 className="text-2xl font-semibold text-center text-gray-700 mb-6">
+            Add Item
+          </h1>
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div>
+              <label className="label">
+                <span className="text-base label-text">Title</span>
+              </label>
+
+              <input
+                type="text"
+                placeholder="Enter name"
+                className="w-full input input-bordered"
+                name="name"
+                value={restaurant.name}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label className="label">
+                <span className="text-base label-text">Type</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter type"
+                className="w-full input input-bordered"
+                name="type"
+                value={restaurant.type}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label className="label">
+                <span className="text-base label-text">Image URL</span>
+              </label>
+              <input
+                type="text"
+                className="w-full input input-bordered"
+                value={restaurant.imageUrl}
+                onChange={handleChange}
+                placeholder="Restaurant imageUrl"
+                name="imageUrl"
+              />
+
+              {restaurant.imageUrl && (
+                <div className="flex items-center gap-2">
+                  <img className="h-32" src={restaurant.imageUrl} alt="Preview" />
+                </div>
+              )}
+            </div>
+
+            <div className="flex justify-center items-center my-6 space-x-4">
+              <button
+                type="submit"
+                className="btn bg-green-500 text-white px-6"
+              >
+                Add
+              </button>
+              <a href="/" className="btn bg-red-500 text-white px-6">
+                Cancel
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

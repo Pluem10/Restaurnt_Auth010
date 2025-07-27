@@ -20,11 +20,11 @@ const Restaurant = sequelize.define("restaurant", {
     allowNull: false,
   },
 });
-Restaurant.sync({ force: false })
-  .then(() => {
-    console.log("Table created or already");
-  })
-  .catch((error) => {
-    console.log("Error creating table", error);
-  });
+// Restaurant.sync({ force: false })
+//   .then(() => {
+//     console.log("Table created or already");
+//   })
+//   .catch((error) => {
+//     console.log("Error creating table", error);
+//   });
 export default Restaurant;

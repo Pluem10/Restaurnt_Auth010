@@ -20,14 +20,25 @@ app.use(express.urlencoded({ extended: true }));
 
 import db from "./models/index.js";
 const Role = db.Role;
-const initRole = () => {
-  Role.create({ id: 1, name: "user" });
-  Role.create({ id: 2, name: "moderator" });
-  Role.create({ id: 3, name: "admin" });
+const initRole = async () => {
+  const count = await Role.count();
+  if (count === 0) {
+    await Role.bulkCreate([
+      { id: 1, name: "user" },
+      { id: 2, name: "moderator" },
+      { id: 3, name: "admin" }
+    ]);
+    console.log("Initialized roles");
+  }
 };
-db.sequelize.sync({ force: true }).then(() => {
-  initRole();
-  console.log("Drop and sync");
+
+// db.sequelize.sync({ force: false }).then(() => {
+//   initRole();
+//   console.log("Drop and sync");
+// });
+
+db.sequelize.sync({ alter: true }).then(() => {
+  console.log("Database synchronized");
 });
 
 app.get("/", (req, res) => {

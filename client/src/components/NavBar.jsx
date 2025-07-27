@@ -11,8 +11,8 @@ const NavBar = () => {
       url: "/add",
     },
     {
-      name: "Update",
-      url: "/update",
+      name: "About US",
+      url: "",
     },
   ];
   return (
@@ -60,8 +60,8 @@ const NavBar = () => {
       </div>
       <div className="navbar-end space-x-2">
         {/* <a className="btn">Button</a> */}
-        <button className="btn btn-outline btn-primary">Register</button>
-        <button className="btn btn-outline btn-secondary">Login</button>
+        <a href="/signUp" className="btn btn-outline btn-primary">Register</a>
+        <a href="/login" className="btn btn-outline btn-secondary">Login</a>
       </div>
     </div>
   );
