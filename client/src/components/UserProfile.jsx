@@ -2,10 +2,8 @@ import React from "react";
 import { useAuthContext } from "../context/AuthContext";
 const UserProfile = () => {
   const { user } = useAuthContext();
-
   return (
     <div className="flex gap-2 items-center">
-      {/* Example: Cart Dropdown */}
       <div className="dropdown dropdown-end">
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
           <div className="indicator">
@@ -65,7 +63,7 @@ const UserProfile = () => {
             <a>Settings</a>
           </li>
           <li>
-            <a>Logout</a>
+            <a onClick={handleLogOut}>Logout</a>
           </li>
         </ul>
       </div>
