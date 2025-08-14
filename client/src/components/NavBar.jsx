@@ -1,6 +1,8 @@
 import React from "react";
-
+import { useAuthContext } from "../context/AuthContext";
+import UserProfile from "./UserProfile";
 const NavBar = () => {
+  const { user } = useAuthContext();
   const menuItems = [
     {
       name: "Search",
@@ -27,13 +29,12 @@ const NavBar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
           <ul
@@ -59,9 +60,21 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end space-x-2">
-        {/* <a className="btn">Button</a> */}
-        <a href="/signUp" className="btn btn-outline btn-primary">Register</a>
-        <a href="/login" className="btn btn-outline btn-secondary">Login</a>
+        {user ? (
+          <div>
+            <UserProfile></UserProfile>
+          </div>
+        ) : (
+          <div className="space-x-2">
+            {" "}
+            <a href="/signUp" className="btn btn-outline btn-primary">
+              Register
+            </a>
+            <a href="/login" className="btn btn-outline btn-secondary">
+              Login
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

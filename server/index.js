@@ -11,7 +11,7 @@ app.use(
   cors({
     origin: ["http://localhost:5173", "127.0.0.1:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-access-token"],
   })
 );
 
@@ -26,14 +26,14 @@ const initRole = async () => {
     await Role.bulkCreate([
       { id: 1, name: "user" },
       { id: 2, name: "moderator" },
-      { id: 3, name: "admin" }
+      { id: 3, name: "admin" },
     ]);
     console.log("Initialized roles");
   }
 };
 
 // db.sequelize.sync({ force: false }).then(() => {
-//   initRole();
+// initRole();
 //   console.log("Drop and sync");
 // });
 
@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
 });
 
 //use router
-app.use("/api/v1/restaurant", restaurantRouter);
+app.use("/api/v1/restaurants", restaurantRouter);
 app.use("/api/v1/auth", authRouter);
 
 app.listen(PORT, () => {

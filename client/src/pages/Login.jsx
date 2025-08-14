@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import AuthService from "../services/auth.service";
+import Swal from "sweetalert2";
 
 function Login() {
   const [login, setLogin] = useState({
@@ -17,33 +19,29 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      // ตรวจสอบ endpoint ให้ตรงกับ backend จริง
-      const response = await fetch("http://localhost:5000/api/v1/auth/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: login.username,
-          password: login.password,
-        }),
-      });
-
-      if (response.ok) {
-        alert("Login successful!");
-        setLogin({
-          username: "",
-          password: "",
+      const response = await AuthService.login(
+        login.username,
+        login.password
+      );
+      if (response && response.status === 200) {
+        Swal.fire({
+          title: "User Login Successfully",
+          text: "login successfully",
+          icon: "success",
+        }).then(() => {
+          navigate("/");
         });
-        setError("");
-        navigate("/"); // redirect ไปหน้าแรกหลัง login สำเร็จ
       } else {
-        const errorData = await response.json();
-        setError(errorData.message || "Unknown error");
+        setError("Invalid username or password");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      setError("Something went wrong. Please try again.");
+      Swal.fire({
+        title: "Login Failed",
+        icon: "error",
+        text: error?.response?.data?.message || error.message,
+      });
+      setError(error?.response?.data?.message || error.message);
     }
   };
 
@@ -58,7 +56,9 @@ function Login() {
         </h2>
 
         {error && (
-          <p className="text-red-500 text-center text-sm font-semibold">{error}</p>
+          <p className="text-red-500 text-center text-sm font-semibold">
+            {error}
+          </p>
         )}
 
         <div>

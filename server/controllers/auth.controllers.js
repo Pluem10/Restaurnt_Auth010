@@ -16,7 +16,7 @@ authController.signup = async (req, res) => {
       .send({ message: "Username, Name, Email or Password can not be empty!" });
     return;
   }
-                                                         // Select * from user where username = username
+                        // Select * from user where username = username
   await User.findOne({ where: { username } }).then((user) => {
     if (user) {
       res.status(400).send({ message: "Username already exists!" });

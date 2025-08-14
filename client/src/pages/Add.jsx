@@ -15,12 +15,12 @@ export const Add = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/restaurant", {
+      const response = await fetch("http://localhost:5000/api/v1/restaurants", {
         method: "POST",
         body: JSON.stringify(restaurant),
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       });
       if (response.status) {
         alert("Restaurant added successfully");
@@ -87,7 +87,11 @@ export const Add = () => {
 
               {restaurant.imageUrl && (
                 <div className="flex items-center gap-2">
-                  <img className="h-32" src={restaurant.imageUrl} alt="Preview" />
+                  <img
+                    className="h-32"
+                    src={restaurant.imageUrl}
+                    alt="Preview"
+                  />
                 </div>
               )}
             </div>
@@ -109,3 +113,4 @@ export const Add = () => {
     </div>
   );
 };
+export default Add;

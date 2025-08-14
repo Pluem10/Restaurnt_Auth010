@@ -8,7 +8,7 @@ const Card = ({ id, name, type, imageUrl }) => {
     if (!confirmDelete) return;
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v1/restaurant/" + id,
+        "http://localhost:5000/api/v1/restaurants/" + id,
         {
           method: "DELETE",
         }

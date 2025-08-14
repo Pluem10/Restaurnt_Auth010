@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
-
 const Update = () => {
   //1. get id from URL
   const { id } = useParams();
@@ -12,7 +11,7 @@ const Update = () => {
   });
   //2. get restaurant by id
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/restaurant/" + id)
+    fetch("http://localhost:5000/api/v1/restaurants/" + id)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch restaurant");
         return res.json();
@@ -39,7 +38,7 @@ const Update = () => {
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v1/restaurant/" + id,
+        "http://localhost:5000/api/v1/restaurants/" + id,
         {
           method: "PUT",
           headers: {

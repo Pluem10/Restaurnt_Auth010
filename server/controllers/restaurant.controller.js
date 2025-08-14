@@ -83,7 +83,7 @@ restaurantContrller.Update = async (req, res) => {
 restaurantContrller.deleteById = async (req, res) => {
   const id = req.params.id;
   if (!id) {
-    req.status(400).send({
+    res.status(400).send({
       message: "Id is missing ",
     });
     return;

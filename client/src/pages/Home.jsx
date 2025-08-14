@@ -25,7 +25,7 @@ const Home = () => {
     // call api : getAllRestaurants
     const getAllRestaurants = async () => {
       try {
-        const response = await RestaurantsService.getAllRestaurant();
+        const response = await RestaurantsService.getAllRestaurants();
         if (response.status === 200) {
           setRestaurants(response.data);
           setFiletedRestarant(response.data);

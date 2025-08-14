@@ -27,11 +27,11 @@ const deleteRestaurant = async (id) => {
   return await api.delete(`${RESTO_API}/${id}`);
 };
 
-const RestaurantService = {
+const RestaurantServices = {
   getAllRestaurants,
   getRestaurantById,
   updateRestaurantById,
   deleteRestaurant,
   insertRestaurant,
 };
-export default RestaurantService;
+export default RestaurantServices;

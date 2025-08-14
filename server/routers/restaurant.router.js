@@ -3,19 +3,19 @@ import express from "express";
 
 const router = express.Router();
 
-//PORT http://localhost:5000/api/v1/restaurant
+//PORT http://localhost:5000/api/v1/restaurants
 router.post("/", restaurantContrller.create);
 
-//GET http://localhost:5000/api/v1/restaurant
+//GET http://localhost:5000/api/v1/restaurants
 router.get("/", restaurantContrller.getAll);
 
-//GET http://localhost:5000/api/v1/restaurant
+//GET http://localhost:5000/api/v1/restaurants
 router.get("/:id", restaurantContrller.getById);
 
-//PUT http://localhost:5000/api/v1/restaurant
+//PUT http://localhost:5000/api/v1/restaurants
 router.put("/:id", restaurantContrller.Update);
 
-//DELETE http://localhost:5000/api/v1/restaurant
+//DELETE http://localhost:5000/api/v1/restaurants
 router.delete("/:id", restaurantContrller.deleteById);
 
 export default router;

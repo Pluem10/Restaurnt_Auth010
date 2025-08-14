@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = import.meta.env.VITE_BESE_URL;
+const baseURL = import.meta.env.VITE_BASE_URL;
 import TokenService from "./token.service";
 
 const instance = axios.create({
@@ -16,7 +16,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers["x-access-token"] = token; //ใส่ token เข้าไปใน header
     }
-    return config; //ส่ง config กลับไป
+    return config; 
   },
   (error) => {
     return Promise.reject(error);
