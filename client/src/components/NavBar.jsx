@@ -14,7 +14,7 @@ const NavBar = () => {
     },
     {
       name: "About US",
-      url: "",
+      url: "/aboutus", 
     },
   ];
   return (
@@ -48,7 +48,9 @@ const NavBar = () => {
             ))}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Grab-Restaurant</a>
+        <a className="btn btn-ghost text-xl" href="/">
+          Grab Restaurant
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-5">

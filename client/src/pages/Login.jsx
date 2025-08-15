@@ -43,6 +43,15 @@ function Login() {
       });
       setError(error?.response?.data?.message || error.message);
     }
+    Swal.fire({
+  title: "User Login Successfully",
+  text: "login successfully",
+  icon: "success",
+}).then(() => {
+  // รีเซ็ตหน้าเว็บ
+  window.location.reload();
+});
+
   };
 
   return (
