@@ -4,7 +4,10 @@ import Update from "../pages/Update";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SignUp from "../pages/signUp";
-import AboutUS from "../pages/AboutUS"; // ✅ import ใหม่
+import AboutUS from "../pages/AboutUS";
+import AdminPage from "../pages/AdminPage";
+import NotAllowed from "../pages/NotAllowed";
+import ModAndAdminPage from "../pages/ModAndAdminPage";
 
 const router = createBrowserRouter([
   {
@@ -13,11 +16,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/add",
-    element: <Add />,
+    element: (
+      <AdminPage>
+        <Add />
+      </AdminPage>
+    ),
   },
   {
     path: "/update/:id",
-    element: <Update />,
+    element: (
+      <ModAndAdminPage>
+        <Update />
+      </ModAndAdminPage>
+    ),
   },
   {
     path: "/signup",
@@ -28,7 +39,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/aboutus", // ✅ path ใหม่
+    path: "/aboutus",
     element: <AboutUS />,
   },
 ]);

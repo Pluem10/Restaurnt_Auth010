@@ -1,6 +1,9 @@
 import React from "react";
+import { useAuthContext } from "../context/AuthContext";
 
 const Card = ({ id, name, type, imageUrl }) => {
+  const { user } = useAuthContext();
+
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "คุณแน่ใจหรือไม่ว่าต้องการลบร้านค้านี้?"
@@ -35,12 +38,26 @@ const Card = ({ id, name, type, imageUrl }) => {
         </h2>
         <p>{type}</p>
         <div className="card-actions justify-end">
-          <a href={"/update/" + id} className="btn btn-warning">
-            Edit
-          </a>
-          <button onClick={() => handleDelete(id)} className="btn btn-error">
-            Delete
-          </button>
+          {user && user.authorities.includes("ROLE_ADMIN") && (
+            <>
+              <a href={"/update/" + id} className="btn btn-warning">
+                Edit
+              </a>
+              <button
+                onClick={() => handleDelete(id)}
+                className="btn btn-error"
+              >
+                Delete
+              </button>
+            </>
+          )}
+          {user &&
+            !user.authorities.includes("ROLE_ADMIN") &&
+            user.authorities.includes("ROLE_MODERATOR") && (
+              <a href={"/update/" + id} className="btn btn-warning">
+                Edit
+              </a>
+            )}
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import AuthService from "../services/auth.service";
 import Swal from "sweetalert2";
-
+import { useAuthContext } from "../context/AuthContext";
 function Login() {
   const [login, setLogin] = useState({
     username: "",
@@ -11,6 +11,13 @@ function Login() {
 
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login: loginFn, user } = useAuthContext();
+  useEffect(() => {
+    // ถ้า user มีอยู่แล้ว ให้ กลับ ไปหน้าแรก
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,17 +27,16 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await AuthService.login(
-        login.username,
-        login.password
-      );
+      const response = await AuthService.login(login.username, login.password);
       if (response && response.status === 200) {
         Swal.fire({
           title: "User Login Successfully",
           text: "login successfully",
           icon: "success",
         }).then(() => {
+          loginFn(response.data);
           navigate("/");
+          window.location.reload();
         });
       } else {
         setError("Invalid username or password");
@@ -43,15 +49,6 @@ function Login() {
       });
       setError(error?.response?.data?.message || error.message);
     }
-    Swal.fire({
-  title: "User Login Successfully",
-  text: "login successfully",
-  icon: "success",
-}).then(() => {
-  // รีเซ็ตหน้าเว็บ
-  window.location.reload();
-});
-
   };
 
   return (

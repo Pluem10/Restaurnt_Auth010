@@ -12,14 +12,14 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  useEffect(() => {
-    TokenService.setUser(user);
-  }, [user]);
-
   function getUser() {
     const currentUeer = TokenService.getUser();
     return currentUeer;
   }
+  useEffect(() => {
+    TokenService.setUser(user);
+  }, [user]);
+
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {children}

@@ -33,7 +33,7 @@ const initRole = async () => {
 };
 
 // db.sequelize.sync({ force: false }).then(() => {
-// initRole();
+//   initRole();
 //   console.log("Drop and sync");
 // });
 

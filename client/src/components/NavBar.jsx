@@ -14,7 +14,7 @@ const NavBar = () => {
     },
     {
       name: "About US",
-      url: "/aboutus", 
+      url: "/aboutus",
     },
   ];
   return (
