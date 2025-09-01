@@ -1,0 +1,9 @@
+PORT=5000
+HOST=ep-hidden-wildflower-a19kcr05-pooler.ap-southeast-1.aws.neon.tech
+USER=neondb_owner
+PASSWOPD=npg_HdS0UX8rCwBa
+DB=neondb
+DBPORT=5432
+DIALECT=postgres
+JWT_SECRET=Nitiphon
+FRONEND_URL=http://localhost:5173
