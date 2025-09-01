@@ -8,11 +8,11 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   pool: dbConfig.pool,
   logging: false,
   dialectOptions: {
-    ssl: false,
-    // ssl:{
-    //   require: true,
-    //   rejectUnauthorized: false,
-    // }
+    // ssl: false,
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
   },
 });
 const testConnection = async () => {
