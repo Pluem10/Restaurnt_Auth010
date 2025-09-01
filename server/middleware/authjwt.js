@@ -1,6 +1,6 @@
 import pkg from "jsonwebtoken";
 const { verify } = pkg;
-import db from "../model/db.js";
+import db from "../models/db.js";
 import authconfig from "../config/auth.config.js";
 import jwt from "jsonwebtoken";
 
