@@ -1,10 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
-
 import restaurantRoutes from "./routers/restaurant.router.js";
-import authRoutes from "./routes/auth.routes.js";
+import authRoutes from "./routers/auth.router.js";
 import cors from "cors";
-import db from "./model/index.js";
+import db from "./models/index.js";
 
 dotenv.config();
 
