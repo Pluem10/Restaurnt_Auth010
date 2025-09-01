@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 
 import restaurantRoutes from "./routers/restaurant.router.js";
-import authRoutes from "./Routes/auth.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 import cors from "cors";
 import db from "./model/index.js";
 
